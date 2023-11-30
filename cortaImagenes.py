@@ -10,7 +10,7 @@ def split(imgPath):
     w, h = img.size
     imgA = img.crop((0, 0, w // 2, h))
     imgB = img.crop((w // 2, 0, w, h))
-    
+
     return imgA, imgB
 
 def stop_program():
@@ -29,12 +29,12 @@ def process_images(directory):
     global stop
     splitted_directory = os.path.join(directory, "splitted_images")
     os.makedirs(splitted_directory, exist_ok=True)
-    
+
     for filename in os.listdir(directory):
         if filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif')) and not stop:
             img_path = os.path.join(directory, filename)
             imgA, imgB = split(img_path)
-            base_filename = os.path.splitext(filename)[0]  
+            base_filename = os.path.splitext(filename)[0]
             imgA.save(os.path.join(splitted_directory, f"{base_filename}_A.png"))
             imgB.save(os.path.join(splitted_directory, f"{base_filename}_B.png"))
 
